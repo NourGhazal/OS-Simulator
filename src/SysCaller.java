@@ -21,5 +21,14 @@ public class SysCaller {
 			System.out.println("file not found");
 		}
 	}
+	public void SysCall3(String data) {
+		System.out.println(data);
+	}
+	public String SysCall4() {
+		Scanner sc =new Scanner(System.in);
+		String input = sc.next();
+		return input;
+	}
+	
 
 }
