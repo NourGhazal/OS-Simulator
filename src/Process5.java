@@ -25,7 +25,7 @@ public class Process5 extends Process {
 				 s =s+" "+i;
 				
 			}
-			getCaller().SysCall2(s,String.format("C:/Users/Ghazal/eclipse-workspace/OS_Simulator/output%2d.txt",c));
+			caller.SysCall2(s,String.format("C:/Users/Ghazal/eclipse-workspace/OS_Simulator/output%2d.txt",c));
 			System.out.println(s);
 		}
 		catch(NumberFormatException e) {

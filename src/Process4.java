@@ -5,8 +5,8 @@ public class Process4 extends Process {
 	}
 	
 	public void run() {
-		SysCaller caller =getCaller();
-		for(int i=300;i<1001;i++)
+		SysCaller caller = getCaller();
+		for(int i=500;i<1001;i++)
 			caller.SysCall3(""+i);
 	}
 }
