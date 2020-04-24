@@ -3,8 +3,8 @@ import java.io.File;
 public class Process5 extends Process {
 	private static int c;
 
-	public Process5() {
-		super();
+	public Process5(Scheduler s) {
+		super(s);
 		c++;
 	}
 
@@ -12,7 +12,10 @@ public class Process5 extends Process {
 	public void run() {
 		
 		try {
+			setEnumState(EnumState.RUNNING);
 			SysCaller caller = getCaller();
+			writeInDisk w = new writeInDisk();
+			w.semWriteWait(this);
 			int x = Integer.parseInt(caller.SysCall4());
 			int y = Integer.parseInt(caller.SysCall4());
 			String s ="";
@@ -27,10 +30,14 @@ public class Process5 extends Process {
 			}
 			caller.SysCall2(s,String.format("C:/Users/Ghazal/eclipse-workspace/OS_Simulator/output%2d.txt",c));
 			System.out.println(s);
+			setEnumState(EnumState.FINISHED);
+			w.semWritePost();
+			getListener().dispatch();
 		}
 		catch(NumberFormatException e) {
 			
 			System.out.println("Please enter a number");
+			run();
 		}
 	
 		

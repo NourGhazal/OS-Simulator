@@ -1,4 +1,4 @@
 
-public enum State {
+public enum EnumState {
  RUNNING , READY , BLOCKED,FINISHED,NEW
 }

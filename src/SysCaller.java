@@ -8,10 +8,8 @@ import java.util.Scanner;
 
 
 public class SysCaller {
+	private Scanner sc =new Scanner(System.in);
 	
-	public SysCaller() {
-		
-	}
 	public String SysCall1(String path){
 		
 		try {
@@ -50,10 +48,11 @@ public class SysCaller {
 		System.out.println(data);
 	}
 	public String SysCall4() {
-		Scanner sc =new Scanner(System.in);
 		String input = sc.nextLine();
 		return input;
 	}
 	
-
+	public boolean canReadLine() {
+		return sc.hasNextLine();
+	}
 }

@@ -1,19 +1,32 @@
 
 public class Process extends Thread {
 	private int pid;
-	private State state = State.NEW;
+	private EnumState enumState = (EnumState.NEW);
+	
 	private SysCaller caller ;
 	private static int counter;
-	public Process() {
+	private ProcessListener listener;
+	public ProcessListener getListener() {
+		return listener;
+	}
+	public Process(Scheduler s) {
+		enumState =EnumState.READY;
 		counter++;
 		pid=counter;
 		caller = new SysCaller();
+		listener=s;
+		s.schedule(this);
 		}
-	public State getState() {
-		return state;
+	
+	public EnumState getEnumState() {
+		return enumState;
 	}
-	public void setState(State state) {
-		this.state = state;
+	public void setEnumState(EnumState state) {
+		this.enumState = state;
+		if(state == EnumState.READY)
+			listener.schedule(this);
+		if(state == EnumState.BLOCKED)
+			listener.block(this);
 	}
 	public int getPid() {
 		return pid;
