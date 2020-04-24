@@ -14,6 +14,9 @@ public class Scheduler implements ProcessListener {
 		processes=new LinkedList<>();
 		blocked=new LinkedList<>();
 	}
+	public void start() {
+		this.dispatch();
+	}
 	public void dispatch() {
 		if(!processes.isEmpty()) {
 		runnig=true;

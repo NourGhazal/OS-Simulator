@@ -10,12 +10,11 @@ public class Process extends Thread {
 		return listener;
 	}
 	public Process(Scheduler s) {
-		enumState =EnumState.READY;
 		counter++;
 		pid=counter;
 		caller = new SysCaller();
 		listener=s;
-		s.schedule(this);
+		setEnumState(EnumState.READY);
 		}
 	
 	public EnumState getEnumState() {

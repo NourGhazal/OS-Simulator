@@ -15,7 +15,11 @@ public class Process5 extends Process {
 			setEnumState(EnumState.RUNNING);
 			SysCaller caller = getCaller();
 			writeInDisk w = new writeInDisk();
+			TakeTextInput t = new TakeTextInput();
 			w.semWriteWait(this);
+			t.semTakeWait(this);
+			if(this.getEnumState()==EnumState.BLOCKED)
+		   		   return;
 			int x = Integer.parseInt(caller.SysCall4());
 			int y = Integer.parseInt(caller.SysCall4());
 			String s ="";
@@ -32,6 +36,7 @@ public class Process5 extends Process {
 			System.out.println(s);
 			setEnumState(EnumState.FINISHED);
 			w.semWritePost();
+			t.semTakePost();
 			getListener().dispatch();
 		}
 		catch(NumberFormatException e) {
